@@ -31,16 +31,6 @@ const changeView = (route) => {
 };
 
 export const initRouter = () => {
-  window.addEventListener('load', changeView(window.location.hash));
-  if (('onhashchange' in window)) {
-    window.onhashchange = () => changeView(window.location.hash);
-  }
-};
-
-/* anterior
-export const initRouter = () => {
   changeView(window.location.hash);
   window.addEventListener('hashchange', () => changeView(window.location.hash));
 };
-
-*/

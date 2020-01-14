@@ -1,4 +1,6 @@
-import { loginFunction, loginWithGmail, loginFacebook, userObserver, } from '../controller-app/login-controller.js';
+import {
+  loginFunction, loginWithGmail, loginFacebook, userObserver,
+} from '../controller-app/login-controller.js';
 
 export default () => {
   const viewLogin = ` 
