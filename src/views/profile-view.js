@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 import { signOut, userCurrent } from '../firebase-controller/userAuthentication.js';
 
+=======
+import {
+  signOut,
+} from '../model/user-authentication.js';
+>>>>>>> 84b3cb380827e817323d416b7ed556a094de927f
 
 export default () => {
   const viewProfile = `<header>

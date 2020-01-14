@@ -1,18 +1,19 @@
 import {
   signInUser, signInWithGoogle, signInWithFacebook, newUser,
-} from '../firebase-controller/userAuthentication.js';
+} from '../model/user-authentication.js';
 
 export const loginFunction = (email, pass, mensajeError) => {
   const msjError = mensajeError;
   signInUser(email, pass)
     .then(() => {
       window.location.hash = '#/home';
-      console.log('Me loguie');
+      // console.log('Me loguie');
+      // console.log(cred.user.uid);
     })
     .catch((error) => {
       const errorCode = error.code;
       const errorMessage = error.message;
-      console.log('Detectando un error: ', error, errorMessage);
+      // console.log('Detectando un error: ', error, errorMessage);
       switch (errorCode) {
         case 'auth/user-not-found':
           msjError.innerHTML = '*Usuario no registrado';
@@ -28,17 +29,17 @@ export const loginFunction = (email, pass, mensajeError) => {
       }
     });
 };
-
 export const loginWithGmail = () => {
   signInWithGoogle()
     .then((result) => {
       const user = result.user;
       const token = result.credential.accessToken;
-      console.log('te has logueado con gmail', user, token);
+      // console.log(result);
+      // console.log('te has logueado con gmail', user, token);
       // console.log(result);
       newUser(result.user.uid, result.user.email, result.user.displayName, result.user.photoURL)
         .then(() => {
-          console.log('se registro documento');
+          // console.log('se registro documento');
           window.location.hash = '#/home';
         })
         .catch(() => {
@@ -54,8 +55,8 @@ export const loginWithGmail = () => {
 export const loginFacebook = () => {
   signInWithFacebook()
     .then((result) => {
-      console.log('te has logueado con Facebook');
-      console.log(result);
+      // console.log('te has logueado con Facebook');
+      // console.log(result);
       newUser(result.user.uid, result.user.email, result.user.displayName, result.user.photoURL)
         .then(() => {
           console.log('se registró documento');
@@ -71,4 +72,16 @@ export const loginFacebook = () => {
         console.log('es el mismo usuario');
       }
     });
+};
+
+// listening if there is a user logged in
+export const userObserver = () => {
+  firebase.auth().onAuthStateChanged((user) => {
+    // console.log(user.uid);
+    if (user) {
+      console.log('usuario logueado', user);
+    } else {
+      console.log('Ha cerrado sesión', user);
+    }
+  });
 };
