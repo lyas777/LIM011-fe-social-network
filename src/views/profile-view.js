@@ -1,6 +1,5 @@
-import {
-  signOut,
-} from '../firebase-controller/userAuthentication.js';
+import { signOut, userCurrent } from '../firebase-controller/userAuthentication.js';
+
 
 export default () => {
   const viewProfile = `<header>
@@ -20,22 +19,22 @@ export default () => {
                     <section class="container-form">
   <h3>Edita la información en tu cuenta</h3>
   <form class="form-" id="form-register" action="post">
-          <img class="avatar-profile" src="./img/profile-user2.svg" alt="placeholder image">
+          <img id="photo" class="avatar-profile" src="${userCurrent().photoURL}" alt="placeholder image">
             <div class="input-wrap">
-            <input class="input" id="user-name" type="text" name="user-name"
-              placeholder="Nombre:"/>
+            <input class="input" id="userName" type="text" name="user-name"
+              placeholder="Nombre:" value="${userCurrent().displayName}" disabled/>
           </div>
           <div class="input-wrap">
-            <input class="input" id="user-menu" type="text" name="user-menu"
+            <input class="input" id="email" type="email" name="email"
+              placeholder="Correo de contacto:" value="${userCurrent().email}" disabled/>
+          </div>
+          <div class="input-wrap">
+            <input class="input" id="userMenu" type="text" name="user-menu"
               placeholder="Tipo de menú:"/>
           </div>
           <div class="input-wrap">
             <input class="input" id="address" type="text" name="address"
               placeholder="Dirección:"/>
-          </div>
-          <div class="input-wrap">
-            <input class="input" id="email" type="email" name="email"
-              placeholder="Correo de contacto:"/>
           </div>
           <div class="btn-wrapper">
                 <input id="button-update-profile" class="submit btn" type="submit" value="Guardar cambios">

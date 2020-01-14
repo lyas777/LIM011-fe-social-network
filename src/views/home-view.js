@@ -1,8 +1,4 @@
-import {
-  signOut,
-} from '../firebase-controller/userAuthentication.js';
-
-import { getInfo } from '../controller-app/getInfo-controller.js';
+import { signOut, userCurrent } from '../firebase-controller/userAuthentication.js';
 
 export default () => {
   const homeView = `<header>
@@ -24,11 +20,11 @@ export default () => {
                           <div class="banner-profile">
                             <img class="banner-img" src="./img/backgroundimgfood.jpg" alt="User Banner Image">
                           </div>
-                          <div id ="profile" class="info-profile">
-                            <img id = "photo" class= "user-icon" src="./img/profile-user2.svg" alt="User Profile Picture">
+                          <div id ="profile"class="info-profile">
+                            <img id = "photo" class= "user-icon" src="${userCurrent().photoURL}" alt="User Profile Picture">
                               <div class="user-name">
-                                <h1 id = "userName">Marilyn Rivero</h1>
-                                <h1 id = "email">Front-end Developer</h1>
+                                <h1 id = "userName">${userCurrent().displayName}</h1>
+                                <h1 id = "email">${userCurrent().email}</h1>
                               </div>
                           </div>
                       </div>
@@ -85,11 +81,7 @@ export default () => {
   const btnProfile = divElement.querySelector('#user-profile');
   const btnCerrarSesion = divElement.querySelector('#sign-out');
 
-  // secci+on del perfil
-
-  const profile = divElement.querySelector('#profile');
-  console.log(profile);
-  getInfo(profile);
+  console.log('aqui ver datos', userCurrent());
 
   btnProfile.addEventListener('click', (e) => {
     e.preventDefault();

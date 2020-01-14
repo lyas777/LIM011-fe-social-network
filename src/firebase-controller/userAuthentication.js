@@ -25,11 +25,9 @@ export const signOut = () => {
   });
 };
 
-/*
 export const userCurrent = () => (
   firebase.auth().currentUser
 );
-*/
 
 // para llenar la base de datos
 export const newUser = (id, email, name, photo) => (
