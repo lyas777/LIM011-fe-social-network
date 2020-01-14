@@ -1,0 +1,13 @@
+.links .link-icon .other-icon{
+    width: 2em;
+    height: auto;
+    margin: .5em .2em .5em .2em;
+    transition: .5s;
+    
+}
+.links .link-icon .other-icon:hover{
+    width: 2.3em;
+    height: auto;
+    position: relative;
+    
+}
