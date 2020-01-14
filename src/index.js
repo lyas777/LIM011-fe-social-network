@@ -1,3 +1,7 @@
-import { example } from './example.js';
+import { initRouter } from "./router.js";
 
-example();
+const init = () => {
+   initRouter();
+}
+
+window.onload = init();
