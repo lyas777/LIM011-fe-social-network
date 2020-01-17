@@ -15,8 +15,9 @@ export const setupPost = (data, postContent, user) => {
                 <img class="heart-likes" src="./img/lover.svg" alt="Likes heart picture"/>
               </div>
             </div>
+            <button id="editar">Editar</button>
+            <button id="eliminar">Eliminar</button>
           </div>`;
-
     template += div;
   });
   postTemplate.innerHTML = template;

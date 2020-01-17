@@ -19,6 +19,11 @@ export const getTextPost = (content, user) => {
     setupPost(snapshot.docs, content, user);
   }));
 };
+export const deletePost = iduser => firebase.firestore().collection('post').doc(iduser).delete();
+
+export const editPost = (idPost, publicacion) => firebase.firestore().collection('post').doc(idPost).update({
+  textPost: publicacion,
+});
 // export const getPost = (callback) => firebase.firestore().collection('post')
 //   .onSnapshot((snapshot) => {
 //     const data = [];
