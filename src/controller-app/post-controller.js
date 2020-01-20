@@ -46,8 +46,8 @@ export const createPost = () => {
   const date = timePublic();
   let likes = document.getElementById('contador');
   likes = 0;
-  console.log(privacidad);
-  console.log(userCurrent());
+  // console.log(privacidad);
+  // console.log(userCurrent().displayName);
   addPost(comentario, userCurrent().displayName, userCurrent().uid, privacidad, likes, date)
     .then((response) => {
       document.getElementById('comentario').value = '';

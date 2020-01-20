@@ -33,6 +33,7 @@ const changeView = (route) => {
           .then((response) => {
             const dataUser = response.data();
             readPosts((call) => {
+              console.log('imprime la llamada', call);
               container.appendChild(components.home(dataUser, call));
             });
           })

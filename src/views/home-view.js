@@ -2,10 +2,11 @@ import {
   signOut,
 } from '../model/user-authentication.js';
 // import { addTextPoaddTextPostst, getTextPost } from '../model/model-post.js';
-import { createPost } from '../controller-app/post-controller.js';
 import { postView } from './post-view.js';
 
-export default (user, arrPost) => {
+import { createPost } from '../controller-app/post-controller.js';
+
+export default (user, call) => {
   // console.log(user);
   const homeView = `<header>
 <nav class="topnav" id="myTopnav">
@@ -59,10 +60,15 @@ export default (user, arrPost) => {
   divElement.className = 'container home';
   divElement.innerHTML = homeView;
 
+  const postContent = divElement.querySelector('#posts-content');
+  call.forEach((objeto) => {
+    postContent.appendChild(postView(objeto));
+  });
+
   const btnCompartir = divElement.querySelector('#compartir');
-  const totalView = divElement.querySelector('#posts-content');
 
   btnCompartir.addEventListener('click', createPost);
+
   // arrPost.forEach(obj => totalView.appendChild(postView(obj)));
 
   const btnNav = divElement.querySelector('#button-nav');
