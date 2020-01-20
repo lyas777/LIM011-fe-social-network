@@ -21,7 +21,7 @@ export const signInUser = (email, password) => (
 export const signOut = () => {
   firebase.auth().signOut().then(() => {
   // Sign-out successful.
-    console.log('Has cerrado sesion');
+    // console.log('Has cerrado sesion');
   });
 };
 
@@ -42,7 +42,7 @@ export const userObserver = (userInformation) => {
 
       // console.log('usuario logueado', user);
     } else {
-      console.log('Ha cerrado sesión');
+      // console.log('Ha cerrado sesión');
     }
   });
 };

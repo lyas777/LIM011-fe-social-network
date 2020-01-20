@@ -1,3 +1,4 @@
+/*
 const div = `
           <div class="box-publication-feed">
             <div class="box-publication-feed-header">
@@ -34,10 +35,8 @@ export const getTextPost = (box) => {
   firebase.firestore().collection('guides').get().then(((snapshot) => {
     setupGuides(snapshot.docs, box);
   }));
-};*/
+};
 
-
-// changing var names into our actual names
  export const setupPost = (data, postContent) =>{
   let postTemplate = postContent;
     let template = '';
@@ -59,3 +58,4 @@ export const getTextPost = (content) => {
   }));
 };
 
+*/

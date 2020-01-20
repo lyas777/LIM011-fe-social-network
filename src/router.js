@@ -1,6 +1,7 @@
 import { components } from './views/components.js';
-import { getInfoUser } from './model/model-post.js';
+import { getInfoUser, readPosts } from './model/model-post.js';
 import { userObserver } from './model/user-authentication.js';
+
 
 const changeView = (route) => {
   const container = document.getElementById('container');
@@ -27,14 +28,16 @@ const changeView = (route) => {
       break;
     case '#/home': {
       const userInformation = (id) => {
-        console.log(id);
+        // console.log(id);
         getInfoUser(id)
           .then((response) => {
             const dataUser = response.data();
-            container.appendChild(components.home(dataUser));
+            readPosts((call) => {
+              container.appendChild(components.home(dataUser, call));
+            });
           })
-          .catch((error) => {
-            console.log(error);
+          .catch(() => {
+            // console.log(error);
           });
       };
       userObserver(userInformation);
@@ -42,14 +45,14 @@ const changeView = (route) => {
       break;
     case '#/profile': {
       const userInformation = (id) => {
-        console.log(id);
+        // console.log(id);
         getInfoUser(id)
           .then((response) => {
             const dataUser = response.data();
             container.appendChild(components.profile(dataUser));
           })
-          .catch((error) => {
-            console.log(error);
+          .catch(() => {
+            // console.log(error);
           });
       };
       userObserver(userInformation);

@@ -1,10 +1,11 @@
 import {
   signOut,
 } from '../model/user-authentication.js';
-import { addTextPost, getTextPost } from '../model/model-post.js';
+// import { addTextPoaddTextPostst, getTextPost } from '../model/model-post.js';
+import { createPost } from '../controller-app/post-controller.js';
+import { postView } from './post-view.js';
 
-
-export default (user) => {
+export default (user, arrPost) => {
   // console.log(user);
   const homeView = `<header>
 <nav class="topnav" id="myTopnav">
@@ -33,25 +34,24 @@ export default (user) => {
       </div>
     </div>
 </div>
-
-<div class="feed">
-
-    <div class="box-create-publication">
-      <label for="publication-text"> ${user.Name} dice: </label>
-      <textarea id="publication-text" name="publication" class="publication" placeholder="Escribe tu mensaje aquí" cols="30" rows="5"></textarea>
-      <button class="btn-add-image pull-left" type="submit"></button>
-      <label for="private">PRIVADO<input type="checkbox" name="private" id="private" value="true"></label>
-      <button id="send-text-post" class="btn pull-right" type="submit">Enviar</button>
-    </div>
-  <div class="box-publication-feed">
-  <div id = "test"> </div>
-    </div>
-    <div class="box-create-comment">
-      <textarea name="comment" class="publication" placeholder="Escribe tu comentario aquí" cols="30" rows="3"></textarea>
-      <button class="btn pull-right" type="submit">Comentar</button>
-    </div>
-  </div>
-
+<div class="total">
+<div class="box-create-publication">
+    <textarea id="comentario" name="publication" class="publication" placeholder="Escribe tu mensaje aquí" cols="30" rows="5"></textarea>
+      <div class= "options-post">
+        <label id="btn-file" >
+          <input type="file" name ="fichero" id="fichero" class="hide">
+            <!-- <button id="fichero" class="btn-add-image pull-left" type="submit"></buttom> -->     
+          <select id="post-privacy" >
+            <option value="public" id="public">Public</option>
+            <option value="private" id="private">Private</option>
+          </select>
+        </label>
+        <button id="compartir" class="btn pull-right" type="submit">Compartir</buttom>
+      </div>      
+      </div>
+        <div class="posts-content" id="posts-content"></div>
+      </div>
+</div>
 </section>
 `;
 
@@ -59,25 +59,29 @@ export default (user) => {
   divElement.className = 'container home';
   divElement.innerHTML = homeView;
 
+  const btnCompartir = divElement.querySelector('#compartir');
+  const totalView = divElement.querySelector('#posts-content');
+
+  btnCompartir.addEventListener('click', createPost);
+  // arrPost.forEach(obj => totalView.appendChild(postView(obj)));
 
   const btnNav = divElement.querySelector('#button-nav');
   const btnCerrarSesion = divElement.querySelector('#sign-out');
   const btnProfile = divElement.querySelector('#user-profile');
-  const sendtextPost = divElement.querySelector('#send-text-post');
-  /* const privatePost = divElement.querySelector('#private'); */
 
+  /*
   sendtextPost.addEventListener('click', (e) => {
     e.preventDefault();
-    console.log('hice click');
+    // console.log('hice click');
     const textPost = divElement.querySelector('#publication-text').value;
     // console.log(textPost);
-
-    console.log('Post enviado:', addTextPost(textPost, user.ID, user.Name, false));
-    getTextPost(postBox, user);
+    // addTextPost(textPost, user.ID, user.Name, false);
+    // console.log('Post enviado:', addTextPost(textPost, user.ID, user.Name, false));
+    // getTextPost(postBox, user);
   });
-  const postBox = divElement.querySelector('#test');
-  getTextPost(postBox, user);
 
+  // getTextPost(postBox, user);
+*/
 
   btnProfile.addEventListener('click', (e) => {
     e.preventDefault();
@@ -98,5 +102,7 @@ export default (user) => {
       x.className = 'dropdown-content';
     }
   });
+
+
   return divElement;
 };

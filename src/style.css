@@ -286,6 +286,14 @@ header {
     font-weight: bold;
 
 }
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 10px 6px;
+    text-decoration: none;
+    display: block !important;
+    text-align: left;
+}
 .topnav a:hover {
     background-color:  #ffde49;
     color: black;
@@ -328,14 +336,6 @@ header {
 }
 .show {
     display: block !important;
-}
-.dropdown-content a {
-    float: none;
-    color: black;
-    padding: 10px 6px;;
-    text-decoration: none;
-    display: block !important;
-    text-align: left;
 }
 .dropdown-content a:hover {
     background-color: #ffde49;

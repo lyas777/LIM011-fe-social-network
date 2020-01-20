@@ -32,8 +32,8 @@ export const loginFunction = (email, pass, mensajeError) => {
 export const loginWithGmail = () => {
   signInWithGoogle()
     .then((result) => {
-      const user = result.user;
-      const token = result.credential.accessToken;
+      // const user = result.user;
+      // const token = result.credential.accessToken;
       // console.log(result);
       // console.log('te has logueado con gmail', user, token);
       // console.log(result);
@@ -43,13 +43,13 @@ export const loginWithGmail = () => {
           window.location.hash = '#/home';
         })
         .catch(() => {
-          console.log('se produjo un error');
+        //  console.log('se produjo un error');
         });
     })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      alert(`Error detectado: ${errorMessage}, Tipo: ${errorCode} `);
+    .catch(() => {
+      // const errorCode = error.code;
+      // const errorMessage = error.message;
+      // alert(`Error detectado: ${errorMessage}, Tipo: ${errorCode} `);
     });
 };
 export const loginFacebook = () => {
@@ -59,17 +59,17 @@ export const loginFacebook = () => {
       // console.log(result);
       newUser(result.user.uid, result.user.email, result.user.displayName, result.user.photoURL)
         .then(() => {
-          console.log('se registró documento');
+          // console.log('se registró documento');
           window.location.hash = '#/home';
         })
         .catch(() => {
-          console.log('se produjo un error');
+          // console.log('se produjo un error');
         });
     })
     .catch((error) => {
       const errorCode = error.code;
       if (errorCode === 'auth/account-exists-with-different-credential') {
-        console.log('es el mismo usuario');
+        // console.log('es el mismo usuario');
       }
     });
 };

@@ -1,3 +1,7 @@
+/*
+import { userCurrent } from "../model/user-authentication";
+
+
 export const setupPost = (data, postContent, user) => {
   const postTemplate = postContent;
   let template = '';
@@ -21,5 +25,34 @@ export const setupPost = (data, postContent, user) => {
     template += div;
   });
   postTemplate.innerHTML = template;
-  console.log(postTemplate);
+  // console.log(postTemplate);
+};
+*/
+import { addPost } from '../model/model-post.js';
+import { userCurrent } from '../model/user-authentication.js';
+
+export const timePublic = () => {
+  const f = new Date();
+  const mes = f.getMonth() + 1;
+  const cad = `${f.getDate()}/${mes}/${f.getFullYear()} - ${f.getHours()}:${f.getMinutes()}:${f.getSeconds()}`;
+  console.log(cad);
+  window.status = cad;
+  return window.status;
+};
+
+export const createPost = () => {
+  const comentario = document.getElementById('comentario').value;
+  const privacidad = document.getElementById('post-privacy').value;
+  const date = timePublic();
+  let likes = document.getElementById('contador');
+  likes = 0;
+  console.log(privacidad);
+  console.log(userCurrent());
+  addPost(comentario, userCurrent().displayName, userCurrent().uid, privacidad, likes, date)
+    .then((response) => {
+      document.getElementById('comentario').value = '';
+      console.log('se agrego a tu colleccion', response.id);
+    }).catch((error) => {
+      console.log('no se agrego', error);
+    });
 };
