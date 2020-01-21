@@ -6,4 +6,5 @@ const init = () => {
   firebase.firestore();
   initRouter();
 };
+
 window.onload = init();

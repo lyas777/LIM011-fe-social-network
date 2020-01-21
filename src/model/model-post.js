@@ -1,10 +1,10 @@
-import { setupPost } from '../controller-app/post-controller.js';
+// import { setupPost } from '../controller-app/post-controller.js';
 
 // get users id on database
 export const getInfoUser = id => firebase.firestore().collection('users').doc(id).get();
 
+// add text post when user submits
 export const addTextPost = (userText, userID, userName, privacy) => (
-
   firebase.firestore().collection('post').add({
     postText: userText,
     UID: userID,
@@ -14,26 +14,31 @@ export const addTextPost = (userText, userID, userName, privacy) => (
   })
 );
 
-export const getTextPost = (content, user) => {
-  firebase.firestore().collection('post').get().then(((snapshot) => {
-    setupPost(snapshot.docs, content, user);
-  }));
+// gets post collection in descending order
+export const getTextPost = (funcionleerdatos) => {
+  firebase.firestore().collection('post').orderBy('datePost', 'desc').onSnapshot((snapshot) => {
+    const array = [];
+    snapshot.forEach((doc) => {
+      array.push({
+        docID: doc.id,
+        userName: doc.data().name,
+        text: doc.data().postText,
+        userUID: doc.data().UID,
+        date: doc.data().datePost,
+        privacidad: doc.data().privatePost,
+      });
+    });
+    funcionleerdatos(array);
+  });
 };
-// export const getPost = (callback) => firebase.firestore().collection('post')
-//   .onSnapshot((snapshot) => {
-//     const data = [];
-//     snapshot.forEach((doc) => {
-//       data.push({ id: doc.id, ...doc.data() });
-//     });
-//     callback(data);
-//   });
 
+// deletes a post from collection
+export const getPostToDelete = (postId) => {
+  firebase.firestore().collection('post').doc(postId).delete();
+};
 
-// export const renderPost = (doc) =>{
-// let li  = document.createElement('li');
-// let post = document.createElement('span');
-// li.setAttribute('data-id', docs.id);
-// post.textContent = docs.data().postText;
-// li.appendChild(post);
-
-// };
+export const deletePost = (post) => {
+  getPostToDelete(post.id).then(() => {
+    // console.log('Document successfully deleted!');
+  });
+};
