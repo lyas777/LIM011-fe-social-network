@@ -14,6 +14,8 @@ export const setupPost = (data, postContent, user) => {
               <div class="text-likes">
                 <img class="heart-likes" src="./img/lover.svg" alt="Likes heart picture"/>
               </div>
+              <button id="editar">Editar</button>
+              <button id="eliminar">Eliminar</button>
             </div>
           </div>`;
 
