@@ -8,6 +8,7 @@ import { createPost } from '../controller-app/post-controller.js';
 
 export default (user, call) => {
   // console.log(user);
+
   const homeView = `<header>
 <nav class="topnav" id="myTopnav">
   <a href="#/home" class="active">~Bon-a-Petit~</a>
@@ -57,7 +58,7 @@ export default (user, call) => {
 `;
 
   const divElement = document.createElement('div');
-  divElement.className = 'container home';
+  divElement.className = 'container-home';
   divElement.innerHTML = homeView;
 
   const postContent = divElement.querySelector('#posts-content');
@@ -67,27 +68,14 @@ export default (user, call) => {
 
   const btnCompartir = divElement.querySelector('#compartir');
 
-  btnCompartir.addEventListener('click', createPost);
+  btnCompartir.addEventListener('click', () => {
+    createPost(user.Name, user.ID);
+  });
 
-  // arrPost.forEach(obj => totalView.appendChild(postView(obj)));
 
   const btnNav = divElement.querySelector('#button-nav');
   const btnCerrarSesion = divElement.querySelector('#sign-out');
   const btnProfile = divElement.querySelector('#user-profile');
-
-  /*
-  sendtextPost.addEventListener('click', (e) => {
-    e.preventDefault();
-    // console.log('hice click');
-    const textPost = divElement.querySelector('#publication-text').value;
-    // console.log(textPost);
-    // addTextPost(textPost, user.ID, user.Name, false);
-    // console.log('Post enviado:', addTextPost(textPost, user.ID, user.Name, false));
-    // getTextPost(postBox, user);
-  });
-
-  // getTextPost(postBox, user);
-*/
 
   btnProfile.addEventListener('click', (e) => {
     e.preventDefault();
