@@ -75,7 +75,7 @@ export const editPost = (idD, newText) => firebase.firestore().collection('posts
   text: newText,
 });
 
-/*
+
 export const addComment = (text, nombre, postId, id, date) => firebase.firestore().collection('posts').doc(postId).collection('comment')
   .add({
     comenatarios: text,
@@ -101,9 +101,8 @@ export const deleteComment = (idD, id) => firebase.firestore().collection('posts
   .doc(id)
   .delete();
 
- export const editComment = (idD, id, newText) => firebase.firestore().collection('posts').doc(idD).collection('comment')
+export const editComment = (idD, id, newText) => firebase.firestore().collection('posts').doc(idD).collection('comment')
   .doc(id)
   .update({
     comentario: newText,
   });
-*/

@@ -1,6 +1,6 @@
 import {
   deletePost,
-  editPost,
+  // editPost,
 } from '../model/model-post.js';
 import { userCurrent } from '../model/user-authentication.js';
 
