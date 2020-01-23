@@ -15,6 +15,7 @@ export const newUser = (id, email, name, photo) => (
 
 export const userCurrent = () => firebase.auth().currentUser;
 
+
 export const signInUser = (email, password) => (
   firebase.auth().signInWithEmailAndPassword(email, password)
 );
@@ -30,5 +31,6 @@ export const signInWithGoogle = () => {
 export const signInWithFacebook = () => {
   const provider = new firebase.auth.FacebookAuthProvider();
   // firebase.auth().useDeviceLanguage();
+  // console.log(firebase.auth().signInWithPopup(provider));
   return firebase.auth().signInWithPopup(provider);
 };
